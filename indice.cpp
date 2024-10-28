@@ -15,6 +15,11 @@ void Indice::LerArquivos(const std::vector<std::string>& arquivos){
         if(!inFile){
             std::cerr<<"Erro ao abrir arquivo: "<< arquivo<<std::endl;
         }
+        std::string linha;
+        while(std::getline(inFile, linha)){
+            ProcessarLinha(linha, arquivo);
+        }
+        inFile.close();
     }
 }
 
