@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <sstream>
 
 
 class Indice {
@@ -14,14 +15,22 @@ class Indice {
 
         }
 
+        void AdicionarPalavra(std::string palavra, std::string nomeArquivo){
+    
+        }   
+
         ~Indice(){
 
         }
 
     private:
 
+        void ProcessarLinha(const std::string& linha, const std::string& nomeArquivo){
+
+        }
+
         std::map<std::string,std::map <std::string, int>> indice_;
-        void NormalizarPalavra(std::string palavra){
+        std::string NormalizarPalavra(std::string palavra){
 
         }
 
