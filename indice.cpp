@@ -5,7 +5,7 @@ Indice::Indice(){
 }
 
 void Indice::AdicionarPalavra(std::string palavra, std::string nomeArquivo){
-
+    indice_[palavra][nomeArquivo]++;
 }
 
 
@@ -36,10 +36,9 @@ void Indice::ProcessarLinha(const std::string& linha, const std::string& nomeArq
     while(stream>>palavra){
         palavra = NormalizarPalavra(palavra);
         if(!palavra.empty()){
-
+            AdicionarPalavra(palavra, nomeArquivo);
         }
     }
-
 }
 
 Indice::~Indice(){
