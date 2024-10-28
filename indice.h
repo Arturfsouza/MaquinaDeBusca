@@ -2,34 +2,27 @@
 #include <map>
 #include <cctype>
 #include <string>
+#include <vector>
+#include <fstream>
+
 
 class Indice {
     public:
         Indice(){}
 
-        void LerArquivos(arquivo){
+        void LerArquivos(const std::vector<std::string>& arquivos){
 
-        }
-
-        void NormalizarPalavra(std::string palavra){
-            for(auto it=palavra.begin(); it!=palavra.end(); it++){
-                if(!isalpha(*it)){
-                    palavra.erase(it);
-                }
-                if(isupper(*it)){
-                    *it = tolower(*it);
-                }
-            }
         }
 
         ~Indice(){
 
         }
 
-
     private:
+
         std::map<std::string,std::map <std::string, int>> indice_;
+        void NormalizarPalavra(std::string palavra){
 
-
+        }
 
 };
