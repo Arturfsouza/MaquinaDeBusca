@@ -9,7 +9,7 @@ void Indice::AdicionarPalavra(std::string palavra, std::string nomeArquivo){
 }
 
 
-void Indice::LerArquivos(const std::vector<std::string>& arquivos){
+void Indice::LerArquivos(const std::vector<std::string>& arquivos, std::string palavra){
     for(const auto& arquivo : arquivos){
         std::ifstream inFile(arquivo);
         if(!inFile){
@@ -23,25 +23,28 @@ void Indice::LerArquivos(const std::vector<std::string>& arquivos){
     }
 }
 
-std::string Indice::NormalizarPalavra(std::string palavra){
-    for(auto it=palavra.begin(); it!=palavra.end(); it++){
+std::string Indice::NormalizarPalavra(std::string& palavra){
+    auto it = palavra.begin();
+    while(it != palavra.end()){
         if(!isalpha(*it)){
             palavra.erase(it);
         }
-        if(isupper(*it)){
-            *it = tolower(*it);
+        else{
+            if(isupper(*it)){
+                *it = tolower(*it);}
+            it++;
         }
     }
     return palavra;
 }
 
-void Indice::ProcessarLinha(const std::string& linha, const std::string& nomeArquivo){
+void Indice::ProcessarLinha(const std::string& linha, const std::string& nomeArquivo, std::string palavra){
     std::istringstream stream(linha);
-    std::string palavra;
-    while(stream>>palavra){
-        palavra = NormalizarPalavra(palavra);
-        if(!palavra.empty()){
-            AdicionarPalavra(palavra, nomeArquivo);
+    std::string p;
+    while(stream>>p){
+        p = NormalizarPalavra(p);
+        if(p == palavra){
+            AdicionarPalavra(p, nomeArquivo);
         }
     }
 }
