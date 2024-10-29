@@ -1,8 +1,8 @@
 #include "indice.h"
+#include <sstream>
+#include <fstream>
+#include <cctype>
 
-Indice::Indice(){
-
-}
 
 void Indice::AdicionarPalavra(std::string palavra, std::string nomeArquivo){
     indice_[palavra][nomeArquivo]++;
@@ -44,8 +44,4 @@ void Indice::ProcessarLinha(const std::string& linha, const std::string& nomeArq
             AdicionarPalavra(palavra, nomeArquivo);
         }
     }
-}
-
-Indice::~Indice(){
-
 }
