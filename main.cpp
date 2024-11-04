@@ -1,4 +1,5 @@
 #include <iostream>
+#include <filesystem>
 #include "indice.h"
 
 int main(){
@@ -8,9 +9,11 @@ int main(){
     Indice indice;
     palavra = indice.NormalizarPalavra(palavra);
     std::vector<std::string> arquivos;
-    for(int i=1; i<4;i++){
-        std::string arquivo = "documentos_testes/d" + std::to_string(i) + ".txt";
-        arquivos.push_back(arquivo);
+    std::string caminhoPasta = "documentos_testes";
+
+    for(const auto& c : std::filesystem::directory_iterator(caminhoPasta)){
+        if (c.is_regular_file()){
+        arquivos.push_back(c.path().string());}
     }
     indice.LerArquivos(arquivos, palavra);
     indice.MostrarResultados(palavra);
